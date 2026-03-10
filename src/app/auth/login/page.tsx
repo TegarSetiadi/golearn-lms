@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { loginUser } from "@/actions/auth";
@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 
-export default function LoginPage() {
+function LoginForm() {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
@@ -34,6 +34,44 @@ export default function LoginPage() {
     }
 
     return (
+        <form onSubmit={handleSubmit}>
+            <CardContent className="space-y-4">
+                {registered && (
+                    <div className="p-3 text-sm text-primary bg-primary/10 border border-primary/20 rounded-md">
+                        Registration successful! Please login.
+                    </div>
+                )}
+                {error && (
+                    <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md">
+                        {error}
+                    </div>
+                )}
+                <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" name="email" type="email" placeholder="john@example.com" required />
+                </div>
+                <div className="space-y-2">
+                    <Label htmlFor="password">Password</Label>
+                    <Input id="password" name="password" type="password" required />
+                </div>
+            </CardContent>
+            <CardFooter className="flex flex-col space-y-4">
+                <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={loading}>
+                    {loading ? "Logging in..." : "Login"}
+                </Button>
+                <p className="text-sm text-center text-muted-foreground">
+                    Don&apos;t have an account?{" "}
+                    <Link href="/auth/register" className="text-primary hover:underline">
+                        Register
+                    </Link>
+                </p>
+            </CardFooter>
+        </form>
+    );
+}
+
+export default function LoginPage() {
+    return (
         <div className="flex items-center justify-center min-h-screen bg-background p-4">
             <Card className="w-full max-w-md border-primary/20 bg-card/50 backdrop-blur-sm">
                 <CardHeader className="space-y-1">
@@ -42,39 +80,9 @@ export default function LoginPage() {
                         Enter your email and password to access your account
                     </CardDescription>
                 </CardHeader>
-                <form onSubmit={handleSubmit}>
-                    <CardContent className="space-y-4">
-                        {registered && (
-                            <div className="p-3 text-sm text-primary bg-primary/10 border border-primary/20 rounded-md">
-                                Registration successful! Please login.
-                            </div>
-                        )}
-                        {error && (
-                            <div className="p-3 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-md">
-                                {error}
-                            </div>
-                        )}
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input id="email" name="email" type="email" placeholder="john@example.com" required />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="password">Password</Label>
-                            <Input id="password" name="password" type="password" required />
-                        </div>
-                    </CardContent>
-                    <CardFooter className="flex flex-col space-y-4">
-                        <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={loading}>
-                            {loading ? "Logging in..." : "Login"}
-                        </Button>
-                        <p className="text-sm text-center text-muted-foreground">
-                            Don&apos;t have an account?{" "}
-                            <Link href="/auth/register" className="text-primary hover:underline">
-                                Register
-                            </Link>
-                        </p>
-                    </CardFooter>
-                </form>
+                <Suspense fallback={<div className="p-8 text-center text-muted-foreground">Loading form...</div>}>
+                    <LoginForm />
+                </Suspense>
             </Card>
         </div>
     );

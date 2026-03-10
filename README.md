@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GoLearn - Modern Learning Management System
 
-## Getting Started
+GoLearn is a high-performance, modern Learning Management System (LMS) built with Next.js 14. It provides a seamless experience for both instructors to create courses and students to learn anything, anywhere.
 
-First, run the development server:
+![GoLearn Preview](https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=1200)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **🎓 Student Dashboard**: Track progress and access enrolled courses easily.
+- **👨‍🏫 Instructor Suite**: Create and manage courses, lessons, and quizzes.
+- **🛡️ Secure Authentication**: Built with Next-Auth for robust user security.
+- **📱 Responsive Design**: Fully optimized for mobile, tablet, and desktop.
+- **⚡ Real-time Updates**: Instant feedback and seamless navigation using Next.js 14 App Router.
+- **📊 Database Management**: Powered by Drizzle ORM and SQLite for efficient data handling.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [Radix UI](https://www.radix-ui.com/) & [Lucide Icons](https://lucide.dev/)
+- **Database**: [SQLite](https://sqlite.org/) with [Drizzle ORM](https://orm.drizzle.team/)
+- **Auth**: [Next-Auth (v5)](https://authjs.dev/)
+- **Animations**: [Tailwind CSS Animate](https://github.com/jamiebuilds/tailwindcss-animate)
 
-## Learn More
+## 🏁 Getting Started
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 18+ 
+- npm / yarn / pnpm
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/golearn-lms.git
+   cd golearn-lms
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **Set up Environment Variables**:
+   Create a `.env` file in the root directory and add:
+   ```env
+   AUTH_SECRET=your_nextauth_secret
+   # Add other necessary variables
+   ```
+
+4. **Initialize the Database**:
+   ```bash
+   npm run db:generate
+   npm run db:migrate
+   npm run db:seed # Optional: populate with sample data
+   ```
+
+5. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
+
+Visit [http://localhost:3000](http://localhost:3000) to see the app in action!
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Whether you're fixing a bug, adding a feature, or improving documentation, your help is appreciated.
+
+1. **Fork** the project.
+2. **Create your Feature Branch** (`git checkout -b feature/AmazingFeature`).
+3. **Commit your Changes** (`git commit -m 'Add some AmazingFeature'`).
+4. **Push to the Branch** (`git push origin feature/AmazingFeature`).
+5. **Open a Pull Request**.
+
+Please ensure your code follows the existing style and includes proper TypeScript types.
+
+## 📜 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
+Built with ❤️ by the GoLearn Team.
