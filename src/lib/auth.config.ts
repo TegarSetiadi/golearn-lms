@@ -21,6 +21,7 @@ export const authConfig = {
             if (user) {
                 token.id = user.id as string;
                 token.role = user.role;
+                console.log("JWT callback - user role:", user.role);
             }
             return token;
         },
@@ -28,6 +29,7 @@ export const authConfig = {
             if (token && session.user) {
                 session.user.id = token.id as string;
                 session.user.role = token.role as "admin" | "instructor" | "student";
+                console.log("Session callback - token role:", token.role);
             }
             return session;
         },
